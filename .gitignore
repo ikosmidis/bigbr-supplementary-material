@@ -1,1 +1,5 @@
 *.rda
+*.rds
+.DS_Store
+.Rhistory
+*.*~
