@@ -11,12 +11,13 @@ This directory provides the data and scripts to reproduce the case
 study for modelling Diverted US flights in 2000 in Section 4 of the
 manuscript.
 
-The required 
+The contributed R packages needed are memisc and dplyr. The results
+have been obtained with memisc v0.99.31.6 and dplyr v1.1.2.
 
 The easiest way to reproduce the relevant outputs in the manuscript is
 to
 
-1. edit "0-replicate.R" by determining
+1. edit "0-reproduce.R" by determining
 
    a. change the path in the `devtools::load_all` call to the path to
    the port of the biglm R package (also distributed as part of the
@@ -29,6 +30,6 @@ to
 
 2. in a terminal run
 
-> Rscript --no-init-file 0-replicate.R
+> Rscript --no-init-file 0-reproduce.R
 
 from the directory where the current file sits

@@ -46,13 +46,15 @@ results <- lapply(results, function(x) {
 ## Parameter name - Coveriate names correspondence
 cbind(covariate_names, parameter_names)
 
-memisc:::mtable("ML-1pass" = results[["ML-1pass-15"]],
-                "ML-1pass" = results[["ML-1pass-20"]],
-                "BRASE-1pass" = results[["BRASE-1pass-20"]],
-                "BRASE-2pass" = results[["BRASE-2pass-20"]],
-                "MJPL-1pass" = results[["MJPL-1pass-20"]],
-                "MJPL-2pass" = results[["MJPL-2pass-20"]],
-                digits = 2,
-                signif.symbols = NULL,
-                summary.stats = c("")) |> toLatex()
+out <- memisc:::mtable("ML-1pass" = results[["ML-1pass-15"]],
+                       "ML-1pass" = results[["ML-1pass-20"]],
+                       "BRASE-1pass" = results[["BRASE-1pass-20"]],
+                       "BRASE-2pass" = results[["BRASE-2pass-20"]],
+                       "MJPL-1pass" = results[["MJPL-1pass-20"]],
+                       "MJPL-2pass" = results[["MJPL-2pass-20"]],
+                       digits = 2,
+                       signif.symbols = NULL,
+                       summary.stats = c(""))
+print(out)
+## toLatex(out)
 
