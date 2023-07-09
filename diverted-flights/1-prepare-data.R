@@ -7,10 +7,13 @@
 
 library("dplyr")
 
-data_path <- "~/Repositories/bigbr/manuscript/bigbr_supplementary_material/diverted-flights/data"
-
-air <- read.csv(file.path(data_path, "2000.csv.bz2"))
-airports <- read.csv(file.path(data_path, "airports.csv"))
+if (interactive()) {
+    experiment_path <- "~/Repositories/bigbr_supplementary_material/diverted-flights/"
+    data_path <- file.path(experiment_path, "data")
+    results_path <- file.path(experiment_path, "results")
+    air <- read.csv(file.path(data_path, "2000.csv.bz2"))
+    airports <- read.csv(file.path(data_path, "airports.csv"))
+}
 
 ## See
 ## https://datascience.stackexchange.com/questions/13567/ways-to-deal-with-longitude-latitude-feature

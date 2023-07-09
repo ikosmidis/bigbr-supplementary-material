@@ -1,10 +1,11 @@
 devtools::load_all("~/Repositories/biglm")
 
-data_path <- "~/Repositories/bigbr/manuscript/bigbr_supplementary_material/diverted-flights/data/"
-results_path <- "~/Repositories/bigbr/manuscript/bigbr_supplementary_material/diverted-flights/results"
-air <- readRDS(file.path(data_path, "air2000_combined.rds"))
-
-dim(air)
+if (interactive()) {
+    experiment_path <- "~/Repositories/bigbr_supplementary_material/diverted-flights/"
+    data_path <- file.path(experiment_path, "data")
+    results_path <- file.path(experiment_path, "results")
+    air <- readRDS(file.path(data_path, "air2000_combined.rds"))
+}
 
 form_air <- Diverted ~ Month +  DayOfWeek + UniqueCarrier + CRSDepTime + CRSArrTime + Distance + Orig_x + Orig_y + Orig_z + Dest_x + Dest_y + Dest_z
 

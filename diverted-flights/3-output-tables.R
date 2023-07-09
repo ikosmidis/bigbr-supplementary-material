@@ -1,10 +1,12 @@
 library("memisc")
 devtools::load_all("~/Repositories/biglm")
 
-data_path <- "~/Repositories/bigbr/manuscript/bigbr_supplementary_material/diverted-flights/data/"
-results_path <- "~/Repositories/bigbr/manuscript/bigbr_supplementary_material/diverted-flights/results/"
-
-load(file.path(results_path, "diverted-fits.rda"))
+if (interactive()) {
+    experiment_path <- "~/Repositories/bigbr_supplementary_material/diverted-flights/"
+    data_path <- file.path(experiment_path, "data")
+    results_path <- file.path(experiment_path, "results")
+    load(file.path(results_path, "diverted-fits.rda"))
+}
 
 ## Helper functions to interface memisc::mtable
 getSummary.biglm <- function(obj, alpha = 0.05) {
