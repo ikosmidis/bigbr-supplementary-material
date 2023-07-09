@@ -13,12 +13,12 @@ source(file.path(code_path, "functions.R"))
 
 ## beta_star_setting and nobs are set by the following lines only if R
 ## is used interactively
-
 if (interactive()) {
     beta_star_setting <- "a"
     nobs <- 2000
     ncores <- 5
 }
+
 ns <- 200000
 repetitions <- 5
 maxit <- 250
@@ -110,73 +110,5 @@ for (rhosq in rhosq_grid) {
                                                    ".rda"))
         save(results, file = out_path)
     }
-
-}
-
-
-
-if (FALSE) {
-    ## Setting for Figure 2b on p 11 of the supplementary information appendix of
-    ##
-    ## Sur P, and Candès EJ (2019). A Modern Maximum-Likelihood Theory for
-    ## High-Dimensional Logistic Regression.  Proceedings of the National
-    ## Academy of Sciences 116 (29):
-    ## 14516–25. https://doi.org/10.1073/pnas.1810420116.
-    ##
-    ## The supplementary information appendix has been downloaded from
-    ## https://www.pnas.org/content/pnas/suppl/2019/06/29/1810420116.DCSupplemental/pnas.1810420116.sapp.pdf
-
-    set.seed(111)
-    n <- 2000
-    p <- 400
-    ## beta <- c(rep(10, p/8), rep(-10, p/8), rep(0, 3*p/4))
-    beta <- c(rep(10, p/8), rep(5, p/8), rep(0, p/4), rep(-2, p/4), rep(-15, p/4))
-    x <- matrix(rnorm(n * p, 0, sqrt(1/n)), n, p)
-    probs <- plogis(x %*% beta)
-    y <- rbinom(n, 1, probs)
-    form <- formula(paste("y ~ -1 + ", paste("x", 1:ncol(x), sep = ".", collapse = " + ")))
-    dd <- data.frame(y = y , x = x)
-
-    library("sgd")
-    delta <- p / (2 * n)
-    dd1 <- dd
-    dd1$y <- (1 - 2 * delta) * dd1$y + delta
-    fit_sgd <- sgd(form, data = dd1, model = "glm", model.control = list(family = "binomial"),
-                   sgd.control = list(shuffle = TRUE, npasses = 20, method = "ai-sgd", lr = "adagrad"))
-
-
-    dd <- simulate_candessur2020(n = 200000, kappa = 0.01, beta0 = 5, gamma = 20)
-    ddf <- data.frame(Y = dd$Y, X = dd$X)
-    form <- formula(paste("Y ~ -1 + ", paste("X", 1:ncol(dd$X), sep = ".", collapse = " + ")))
-
-
-
-    system.time(
-        m0 <- JeffreysMPL(y = y, m = NULL, X = x, a = 1/2, link = "logit", epsilon = 1e-04)
-    )
-
-    system.time(
-        m1 <- glm(form, data = dd, family = binomial(), method = "brglm_fit", epsilon = 1e-04)
-    )
-
-    system.time(
-        m2ml <- bigglm(form, data = ddf, family = binomial(), type = "ML", maxit = 100, epsilon = 1e-03, implementation = "1pass", chunksize = 1000, verbose = TRUE)
-    )
-
-    system.time(
-        m2 <- bigglm(form, data = dd, family = binomial(), type = "BRASE", maxit = 100, tolerance = 1e-03, implementation = "1pass", chunksize = 1000, verbose = 1, start = coef(fit_sgd))
-    )
-
-
-    par(mfrow = c(1, 2))
-    plot(coef(m2), coef(m0)); abline(0, 1)
-    plot(coef(m2), coef(m1)); abline(0, 1)
-
-    par(mfrow = c(1, 2))
-    plot(coef(m2ml))
-    points(beta, type ="l", col = "red", lwd =2)
-    plot(coef(m2))
-    points(beta, type ="l", col = "red", lwd =2)
-
 
 }

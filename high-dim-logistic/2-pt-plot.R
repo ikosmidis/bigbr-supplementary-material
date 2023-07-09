@@ -95,10 +95,6 @@ for (rhosq in rhosq_grid) {
     if (include_title) {
         out_u <- out + labs(title = tt)
     }
-    ## png(file.path(figures_path, paste0(base_name, "_uncorrected.png")),
-    ##     width = exp_w, height = exp_h, res = 300)
-    ## print(out_u)
-    ## dev.off()
 
     ## Plot mJPL and ML estimates (the latter only when they exist),
     ## adjusting the former by kappa * gamma /sqrt(1 - rhosq) when the
@@ -133,10 +129,6 @@ for (rhosq in rhosq_grid) {
     if (include_title) {
         out_c <- out + labs(title = tt)
     }
-    ## png(file.path(figures_path, paste0(base_name, "_corrected.png")),
-    ##     width = exp_w, height = exp_h, res = 300)
-    ## print(out_c)
-    ## dev.off()
 
     f_u <- out_u +
         theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()) +

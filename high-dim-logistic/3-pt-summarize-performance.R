@@ -43,4 +43,3 @@ perf <- c_perf |> subset(method == "mJPL") |>
 
 
 toLatex(perf, digits = 2)
-
