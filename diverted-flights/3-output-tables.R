@@ -2,7 +2,7 @@ library("memisc")
 devtools::load_all("~/Repositories/biglm")
 
 if (interactive()) {
-    experiment_path <- "~/Repositories/bigbr_supplementary_material/diverted-flights/"
+    experiment_path <- "~/Repositories/bigbr-supplementary-material/diverted-flights/"
     data_path <- file.path(experiment_path, "data")
     results_path <- file.path(experiment_path, "results")
     load(file.path(results_path, "diverted-fits.rda"))

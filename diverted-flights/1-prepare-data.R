@@ -8,7 +8,7 @@
 library("dplyr")
 
 if (interactive()) {
-    experiment_path <- "~/Repositories/bigbr_supplementary_material/diverted-flights/"
+    experiment_path <- "~/Repositories/bigbr-supplementary-material/diverted-flights/"
     data_path <- file.path(experiment_path, "data")
     results_path <- file.path(experiment_path, "results")
     air <- read.csv(file.path(data_path, "2000.csv.bz2"))

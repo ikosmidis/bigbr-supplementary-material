@@ -1,7 +1,7 @@
 devtools::load_all("~/Repositories/biglm")
 
 if (interactive()) {
-    experiment_path <- "~/Repositories/bigbr_supplementary_material/diverted-flights/"
+    experiment_path <- "~/Repositories/bigbr-supplementary-material/diverted-flights/"
     data_path <- file.path(experiment_path, "data")
     results_path <- file.path(experiment_path, "results")
     air <- readRDS(file.path(data_path, "air2000_combined.rds"))
