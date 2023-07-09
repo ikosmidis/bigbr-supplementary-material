@@ -1,0 +1,34 @@
+## Distributed as part of the supplementary materials for the manuscript
+## "Bounded-memory adjusted scores estimation in generalized linear models with large data sets"
+##
+## Author: Ioannis Kosmidis
+## Date: 09 July 2023
+## Licence: GPL 2 or greater
+## NOT A POLISHED PIECE OF PUBLIC-USE SOFTWARE!  Provided "as is".
+## NO WARRANTY OF FITNESS FOR ANY PURPOSE!
+
+This directory provides the data and scripts to reproduce the case
+study for modelling Diverted US flights in 2000 in Section 4 of the
+manuscript.
+
+The required 
+
+The easiest way to reproduce the relevant outputs in the manuscript is
+to
+
+1. edit "0-replicate.R" by determining
+
+   a. change the path in the `devtools::load_all` call to the path to
+   the port of the biglm R package (also distributed as part of the
+   supplementary).
+
+   b. set `n_cores` appropriately to determine the number of cores you would like
+   to use.
+
+   c. set `experiment_path` to the path where the current file is
+
+2. in a terminal run
+
+> Rscript --no-init-file 0-replicate.R
+
+from the directory where the current file sits

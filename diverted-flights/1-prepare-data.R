@@ -5,9 +5,8 @@
 ## https://doi.org/10.7910/DVN/HG7NV7/XTPZZY
 ## on 11 May 2023
 
-library("dplyr")
-
 if (interactive()) {
+    library("dplyr")
     experiment_path <- "~/Repositories/bigbr-supplementary-material/diverted-flights/"
     data_path <- file.path(experiment_path, "data")
     results_path <- file.path(experiment_path, "results")
