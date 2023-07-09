@@ -1,4 +1,5 @@
 devtools::load_all("~/Repositories/biglm")
+library("parallel")
 
 if (interactive()) {
     experiment_path <- "~/Repositories/bigbr-supplementary-material/diverted-flights/"
@@ -20,7 +21,7 @@ run_settings <- data.frame(maxit = c(15, 20, 20, 20, 20, 20),
                            verbose = FALSE)
 row.names(run_settings) <- with(run_settings, paste(type, implementation, maxit, sep = "-"))
 
-results <- lapply(1:nrow(run_settings), function(s) {
+results <- mclapply(1:nrow(run_settings), function(s) {
     timing <- system.time(
         mod <- with(run_settings[s, ],
                     bigglm(form_air, data = air, family = fam,
@@ -36,7 +37,7 @@ results <- lapply(1:nrow(run_settings), function(s) {
     print(timing)
     mod$time <- timing
     mod
-})
+}, mc.cores = n_cores)
 names(results) <- row.names(run_settings)
 
 save(results, run_settings, form_air,
