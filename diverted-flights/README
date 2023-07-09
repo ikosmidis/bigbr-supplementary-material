@@ -33,3 +33,10 @@ to
 > Rscript --no-init-file 0-reproduce.R
 
 from the directory where the current file sits
+
+
+You can also you an interactive R session and run the scripts
+1-prepare-data.R, 2-fit-model.R, and 3-output-tables.R in that
+order. 1-prepare-data.R will output data/air2000_combined.rds, and
+2-fit-model.R will output results/diverted-fits.rda, which is used by
+3-output-tables.R
