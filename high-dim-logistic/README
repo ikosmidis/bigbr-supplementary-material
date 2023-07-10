@@ -14,8 +14,8 @@ document.
 
 
 The contributed R packages needed are dplyr, ggplot2, ggpp,
-patchwork. The results have been obtained using dplyr v1.1.2, ggplot2
-v3.4.2, ggpp v0.5.2, patchwork v1.1.2.
+patchwork. The results have been obtained using R 4.3.1 with dplyr
+v1.1.2, ggplot2 v3.4.2, ggpp v0.5.2, patchwork v1.1.2.
 
 
 The easiest way to reproduce the relevant outputs in the manuscript
