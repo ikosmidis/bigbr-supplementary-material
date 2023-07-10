@@ -1,23 +1,16 @@
-## Rscript --no-init-file -e 'nobs <- 500; beta_star_setting <- "a"; ncores <- 5; source("1-pt-simulate.R")'
-## Rscript --no-init-file -e 'nobs <- 500; beta_star_setting <- "b"; ncores <- 5; source("1-pt-simulate.R")'
-## Rscript --no-init-file -e 'nobs <- 2000; beta_star_setting <- "a"; ncores <- 5; source("1-pt-simulate.R")'
-## Rscript --no-init-file -e 'nobs <- 2000; beta_star_setting <- "b"; ncores <- 5; source("1-pt-simulate.R")'
-
 devtools::load_all("~/Repositories/biglm")
-library("brglm2")
 library("parallel")
 
-code_path <- "~/Repositories/bigbr-supplementary-material/high-dim-logistic/"
-results_path <- file.path(code_path, "results")
-source(file.path(code_path, "functions.R"))
-
-## beta_star_setting and nobs are set by the following lines only if R
+## b_setting and nobs are set by the following lines only if R
 ## is used interactively
 if (interactive()) {
-    beta_star_setting <- "a"
+    b_setting <- "a"
     nobs <- 2000
     ncores <- 5
+    base_path <- "~/Repositories/bigbr-supplementary-material/high-dim-logistic/"
 }
+results_path <- file.path(base_path, "results")
+source(file.path(base_path, "functions.R"))
 
 ns <- 200000
 repetitions <- 5
@@ -80,7 +73,7 @@ for (rhosq in rhosq_grid) {
     pt <- do.call("rbind", pt)
 
     ## Save phase transition curve
-    out_path <- file.path(results_path, paste0("PT-n-", nobs, "-setting-", beta_star_setting, "-rhosq-", rhosq, ".rda"))
+    out_path <- file.path(results_path, paste0("PT-n-", nobs, "-setting-", b_setting, "-rhosq-", rhosq, ".rda"))
     save(pt, file = out_path)
 
     ## Determine whether ML estimates exist or not and set up and add
@@ -100,11 +93,11 @@ for (rhosq in rhosq_grid) {
         results <- get_results(all_settings[wh, ],
                                beta0 = sqrt(rhosq) * all_settings[wh, "gamma"],
                                nz_perc = 0.2,
-                               beta_star_setting = beta_star_setting,
+                               beta_star_setting = b_setting,
                                ncores = ncores,
                                verbose = 0)
         out_path <- file.path(results_path, paste0("estimates-n-", nobs, "-setting-",
-                                                   beta_star_setting, "-rhosq-", rhosq,
+                                                   b_setting, "-rhosq-", rhosq,
                                                    "-kappa-", round(all_settings[wh, "kappa"], 4),
                                                    "-gamma-", all_settings[wh, "gamma"],
                                                    ".rda"))

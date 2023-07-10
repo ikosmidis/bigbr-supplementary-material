@@ -1,30 +1,25 @@
-devtools::load_all("~/Repositories/biglm")
-library("ggplot2")
-library("ggpp")
-library("patchwork")
 library("dplyr")
-library("tibble")
-library("memisc")
-code_path <- "~/Repositories/bigbr-supplementary-material/high-dim-logistic/"
-results_path <- file.path(code_path, "results")
-figures_path <- file.path(code_path, "figures")
-source(file.path(code_path, "functions.R"))
-
 options(dplyr.summarise.inform = FALSE)
 
-beta_star_setting <- "a"
-nobs <- 2000
-rhosq <- 0.0
+if (interactive()) {
+    b_setting <- "a"
+    nobs <- 2000
+    rhosq <- 0.0
+    base_path <- "~/Repositories/bigbr-supplementary-material/high-dim-logistic/"
+}
+results_path <- file.path(base_path, "results")
+figures_path <- file.path(base_path, "figures")
+source(file.path(base_path, "functions.R"))
 
-plot_type <- if (beta_star_setting == "a") "estimate_vs_truth" else "estimate_and_truth"
+plot_type <- if (b_setting == "a") "estimate_vs_truth" else "estimate_and_truth"
 
 
-base_name <- paste0("mJPL-", rhosq, "-n-", nobs, "-setting-", beta_star_setting)
+base_name <- paste0("mJPL-", rhosq, "-n-", nobs, "-setting-", b_setting)
 ## Get phase transfition curve for rhosq
-load(file.path(results_path, paste0("PT-n-", nobs, "-setting-", beta_star_setting, "-rhosq-", rhosq, ".rda")))
+load(file.path(results_path, paste0("PT-n-", nobs, "-setting-", b_setting, "-rhosq-", rhosq, ".rda")))
 ## Get estimates for rhosq
 files <- dir(results_path,
-             pattern = paste0("estimates-n-", nobs, "-setting-", beta_star_setting, "-rhosq-", rhosq, "-"),
+             pattern = paste0("estimates-n-", nobs, "-setting-", b_setting, "-rhosq-", rhosq, "-"),
              full.names = TRUE)
 c_perf <- NULL
 for (f in files) {
@@ -41,5 +36,7 @@ perf <- c_perf |> subset(method == "mJPL") |>
 
 
 
+print(perf)
 
-toLatex(perf, digits = 2)
+## library("memisc")
+## toLatex(perf, digits = 2)

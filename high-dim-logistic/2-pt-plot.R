@@ -1,26 +1,23 @@
-## Rscript --no-init-file -e 'nobs <- 500; beta_star_setting <- "a"; source("2-pt-plot.R")'
-## Rscript --no-init-file -e 'nobs <- 500; beta_star_setting <- "b"; source("2-pt-plot.R")'
-## Rscript --no-init-file -e 'nobs <- 2000; beta_star_setting <- "a"; source("2-pt-plot.R")'
-## Rscript --no-init-file -e 'nobs <- 2000; beta_star_setting <- "b"; source("2-pt-plot.R")'
-
-devtools::load_all("~/Repositories/biglm")
 library("ggplot2")
 library("ggpp")
 library("patchwork")
 library("dplyr")
-library("tibble")
-
 options(dplyr.summarise.inform = FALSE)
 
-## beta_star_setting and nobs are set by the following lines only if R
+
+## b_setting and nobs are set by the following lines only if R
 ## is used interactively
 if (interactive()) {
     nobs <- 2000
-    beta_star_setting <- "a"
+    b_setting <- "a"
+    base_path <- "~/Repositories/bigbr-supplementary-material/high-dim-logistic/"
 }
+results_path <- file.path(base_path, "results")
+figures_path <- file.path(base_path, "figures")
+source(file.path(base_path, "functions.R"))
 
 include_title <- TRUE
-plot_type <- if (beta_star_setting == "a") "estimate_vs_truth" else "estimate_and_truth"
+plot_type <- if (b_setting == "a") "estimate_vs_truth" else "estimate_and_truth"
 rhosq_grid <- c(0.0, 0.25, 0.5, 0.75, 0.8, 0.9)
 
 exp_h <- 5 * 200 * 1.5
@@ -32,22 +29,17 @@ vp_w <- vp_h * exp_ratio
 p_size <- 0.5
 alpha_fac <- 150
 
-code_path <- "~/Repositories/bigbr-supplementary-material/high-dim-logistic/"
-results_path <- file.path(code_path, "results")
-figures_path <- file.path(code_path, "figures")
-source(file.path(code_path, "functions.R"))
-
 for (rhosq in rhosq_grid) {
 
-    base_name <- paste0("mJPL-setting-", beta_star_setting,
+    base_name <- paste0("mJPL-setting-", b_setting,
                         "-n-", nobs, "-rho2-",
                         format(rhosq, digits = 2, nsmall = 2))
 
     ## Get phase transfition curve for rhosq
-    load(file.path(results_path, paste0("PT-n-", nobs, "-setting-", beta_star_setting, "-rhosq-", rhosq, ".rda")))
+    load(file.path(results_path, paste0("PT-n-", nobs, "-setting-", b_setting, "-rhosq-", rhosq, ".rda")))
     ## Get estimates for rhosq
     files <- dir(results_path,
-                 pattern = paste0("estimates-n-", nobs, "-setting-", beta_star_setting, "-rhosq-", rhosq, "-"),
+                 pattern = paste0("estimates-n-", nobs, "-setting-", b_setting, "-rhosq-", rhosq, "-"),
                  full.names = TRUE)
     res <- NULL
     for (f in files) {
