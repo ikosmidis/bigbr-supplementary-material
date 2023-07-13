@@ -1,0 +1,12 @@
+Package: biglm
+Type: Package
+Title: Bounded Memory Linear and Generalized Linear Models
+Version: 1.0
+Authors@R: c(person(given = "Thomas", family = "Lumley", role = c("aut"), email = "tlumley at u.washington.edu"),
+             person(given = "Ioannis", family = "Kosmidis", role = c("aut", "cre"), email = "ioannis.kosmidis@warwick.ac.uk", comment = c(ORCID = "0000-0003-1556-0302"))
+Description: Regression for data too large to fit in memory. It implements maximum likelihood for all Generalized Linear Models, and the reduced-bias estimator of Firth (1993) <doi:10.1093/biomet/80.1.27> and maximum Jeffreys'-penalized likelihood Kosmidis & Firth (2021) <10.1093/biomet/asaa052> for binomial- and Poisson-response Generalized Linear Models.
+License: GPL
+Suggests: RSQLite, RODBC
+Depends: DBI, methods
+Enhances: leaps
+NeedsCompilation: yes
