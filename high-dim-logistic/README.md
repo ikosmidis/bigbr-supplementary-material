@@ -61,8 +61,13 @@ Once all results have been computed, the runtime summaries in Section
 S4 and Section S5 can be reproduced by running in a terminal
 
 > Rscript --no-init-file -e 'base_path <- "."; nobs <- 1000; b_setting <- "a"; rhosq <- 0; source(file.path(base_path, "3-pt-summarize-performance.R"))'
+
 > Rscript --no-init-file -e 'base_path <- "."; nobs <- 1000; b_setting <- "b"; rhosq <- 0; source(file.path(base_path, "3-pt-summarize-performance.R"))'
+
 > Rscript --no-init-file -e 'base_path <- "."; nobs <- 2000; b_setting <- "a"; rhosq <- 0; source(file.path(base_path, "3-pt-summarize-performance.R"))'
+
 > Rscript --no-init-file -e 'base_path <- "."; nobs <- 2000; b_setting <- "b"; rhosq <- 0; source(file.path(base_path, "3-pt-summarize-performance.R"))'
+
 > Rscript --no-init-file -e 'base_path <- "."; nobs <- 3000; b_setting <- "a"; rhosq <- 0; source(file.path(base_path, "3-pt-summarize-performance.R"))'
+
 > Rscript --no-init-file -e 'base_path <- "."; nobs <- 3000; b_setting <- "b"; rhosq <- 0; source(file.path(base_path, "3-pt-summarize-performance.R"))'
