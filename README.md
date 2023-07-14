@@ -12,9 +12,10 @@ manuscript
 
 The Supplementary Material provides
 
-i) the Supplementary Material document that is cross-referenced above
-and contains all numerical results and figures from the case study of
-Section 4 and the computer experiment of Section 5 of the manuscript;
+i) the Supplementary Material document that is cross-referenced in the
+manuscript and contains all numerical results and figures from the
+case study of Section 4 and the computer experiment of Section 5 of
+the manuscript;
 
 ii) R code to reproduce all numerical results and figures in the main
 text and in the Supplementary Materials document.
