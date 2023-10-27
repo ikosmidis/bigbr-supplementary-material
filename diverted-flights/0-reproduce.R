@@ -3,7 +3,7 @@ library("parallel")
 library("memisc")
 library("dplyr")
 
-n_cores <- 6
+n_cores <- 1
 experiment_path <- "~/Repositories/bigbr-supplementary-material/diverted-flights/"
 data_path <- file.path(experiment_path, "data")
 results_path <- file.path(experiment_path, "results")

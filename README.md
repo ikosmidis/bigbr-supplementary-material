@@ -14,18 +14,18 @@ The Supplementary Material provides
 
 i) the Supplementary Material document that is cross-referenced in the
 manuscript and contains all numerical results and figures from the
-case study of Section 4 and the computer experiment of Section 5 of
-the manuscript;
+case study of Section 4.
 
-ii) R code to reproduce all numerical results and figures in the main
-text and in the Supplementary Materials document.
+ii) R code to reproduce all numerical results in the main text and in
+the Supplementary Materials document.
 
 The code is organized in the two directories `diverted-flights` and
-`high-dim-logistic`, for the case study of Section 4 and the computer
-experiment of Section 5, respectively. The `README` file in each
-directory provides specific instructions about have the results can be
-reproduced, along with the specific versions of the contributed R
-packages that have been used to produce the results.
+`biglm`.
+
+The `diverted-flights` directory, apart form code and data, provides a
+`README` file with specific instructions to reproduce the numerical
+results, along with the specific versions of the contributed R
+packages that have been used.
 
 The `biglm` directory has a port of the [**biglm** R
 package](https://cran.r-project.org/package=biglm), which implements

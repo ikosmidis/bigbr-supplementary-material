@@ -259,7 +259,7 @@ bigglm.function <- function(formula, data, family = gaussian(),
     rval <- iwlm
     rval$type <- type
     rval$delta <- delta
-    rval$impementation <- if (adj) implementation else "1pass"
+    rval$implementation <- if (adj) implementation else "1pass"
     rval$family <- family
     rval$deviance <- deviance
     rval$df.resid <- rval$n - length(rval$qr$D)

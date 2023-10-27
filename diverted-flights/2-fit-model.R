@@ -5,6 +5,7 @@ if (interactive()) {
     data_path <- file.path(experiment_path, "data")
     results_path <- file.path(experiment_path, "results")
     air <- readRDS(file.path(data_path, "air2000_combined.rds"))
+    n_cores <- 1
 }
 
 form_air <- Diverted ~ Month +  DayOfWeek + UniqueCarrier + CRSDepTime + CRSArrTime + Distance + Orig_x + Orig_y + Orig_z + Dest_x + Dest_y + Dest_z
@@ -39,9 +40,29 @@ results <- mclapply(1:nrow(run_settings), function(s) {
 }, mc.cores = n_cores)
 names(results) <- row.names(run_settings)
 
-save(results, run_settings, form_air,
+## mBR and mJPL fits using brglm2
+library("brglm2")
+timing_mBR <- system.time(
+    mod_mBR <- glm(form_air, data = air, family = fam,
+                   maxit = 20,
+                   tolerance = 1e-03,
+                   method = "brglm_fit",
+                   type = "AS_mean",
+                   max_step_factor = 1,
+                   start = rep(0, 37))
+)
+
+timing_mJPL <- system.time(
+    mod_mJPL <- glm(form_air, data = air, family = fam,
+                   maxit = 20,
+                   tolerance = 1e-03,
+                   method = "brglm_fit",
+                   type = "MPL_Jeffreys",
+                   max_step_factor = 1,
+                   start = rep(0, 37))
+)
+
+
+save(results, run_settings, form_air, timing_mBR, timing_mJPL,
      file = file.path(results_path, "diverted-fits.rda"))
-
-
-
 
