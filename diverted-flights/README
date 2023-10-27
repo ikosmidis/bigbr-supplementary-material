@@ -9,7 +9,7 @@
 
 This directory provides the data and scripts to reproduce the results
 from the case study on modelling Diverted US flights in 2000 in
-Section 4 of the manuscript, and in Section S1 of the Supplementary
+Section 4 of the manuscript and in Section S1 of the Supplementary
 Material document.
 
 
@@ -39,7 +39,7 @@ and the Supplementary Material document is to
   from the directory where the current file sits
 
 
-You can also you an interactive R session and run the scripts
+You can also use an interactive R session and run the scripts
 1-prepare-data.R, 2-fit-model.R, and 3-output-tables.R in that
 order. 1-prepare-data.R will output data/air2000_combined.rds, and
 2-fit-model.R will output results/diverted-fits.rda, which is used by
