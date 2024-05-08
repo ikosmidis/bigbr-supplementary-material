@@ -133,7 +133,7 @@ bigglm.function <- function(formula, data, family = gaussian(),
                 xi <- h * family$d2mu.deta(eta) / (2 * dmu * ww)
                 z <- z + xi
                 if (mjpl) {
-                    vd <- family$d1variance(mu_prev)
+                    vd <- family$d1variance(mu)
                     z <- z + xi - h * vd / (2 * w * dmu)
                 }
                 sh <- sh + sum(h)
