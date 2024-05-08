@@ -12,10 +12,9 @@ from the case study on modelling Diverted US flights in 2000 in
 Section 4 of the manuscript and in Section S1 of the Supplementary
 Material document.
 
-
 The contributed R packages needed are memisc and dplyr. The results
-have been obtained using R 4.3.1 with memisc 0.99.31.6 and dplyr
-1.1.2.
+have been obtained using R 4.4.0 with memisc 0.99.31.7, dplyr 1.1.4,
+and brglm2 0.9.2.
 
 
 The easiest way to reproduce the relevant outputs in the manuscript
@@ -44,3 +43,5 @@ You can also use an interactive R session and run the scripts
 order. 1-prepare-data.R will output data/air2000_combined.rds, and
 2-fit-model.R will output results/diverted-fits.rda, which is used by
 3-output-tables.R
+
+

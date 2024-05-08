@@ -32,7 +32,7 @@ covariate_names <- results[[1]]$names
 parameter_names <- c("$\\alpha$",
                      paste0("$\\beta_", 2:12, "$"),
                      paste0("$\\gamma_", 2:7, "$"),
-                     paste0("$\\delta_", 2:11, "$"),
+                     paste0("$\\delta_", c(1, 3:11), "$"),
                      "$\\zeta_{(d)}$",
                      "$\\zeta_{(a)}$",
                      "$\\rho$",
